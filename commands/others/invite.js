@@ -3,8 +3,8 @@ module.exports = {
   name: "invite",
   description: "Send bot invite link",
   execute(client, message, args) {
-    const inviteURL = `https://discord.com/oauth2/authorize?client_id=${message.client.user.id}&scope=bot&permissions=993390022`;
-    const inviteURL2 = `https://discord.com/oauth2/authorize?client_id=820636341788344321&scope=bot&permissions=993390022`;
+    const inviteURL = `https://discord.com/oauth2/authorize?client_id=800074066949832714&scope=bot&permissions=2079714502`;
+    const inviteURL2 = `https://discord.com/oauth2/authorize?client_id=820636341788344321&scope=bot&permissions=2079714502`;
     const newEmbed = new MessageEmbed()
       .setColor("#ffe65d")
       .setTitle("")
