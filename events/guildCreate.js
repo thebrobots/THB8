@@ -3,9 +3,16 @@ const { PREFIX } = require("../util/sharkyUtil");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = (guild) => {
-  var channel = guild.channels.cache
-    .filter((chx) => chx.type === "text")
-    .find((x) => x.position === 0);
+  
+  let defaultChannel;
+guild.channels.cache.forEach((channel) => {
+  if(channel.type == "text") {
+    if(channel.permissionsFor(guild.me).has("SEND_MESSAGES" && "EMBED_LINKS" && "USE_EXTERNAL_EMOJIS")) {
+      defaultChannel = channel;
+    }
+  }
+})
+  
   let newEmbed = new MessageEmbed()
     .setColor("#ffe65d")
     .setTitle(
@@ -17,5 +24,5 @@ module.exports = (guild) => {
     )
     .setImage("")
     .setFooter("");
-  channel.send(newEmbed);
+  defaultChannel.send(newEmbed);
 };
