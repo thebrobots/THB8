@@ -26,7 +26,7 @@ module.exports = {
         });
 
       let newEmbed = new MessageEmbed()
-        .setColor("#00C7FF")
+        .setColor("#ffe65d")
         .setTitle("")
         .setURL("")
         .setDescription(
@@ -37,17 +37,9 @@ module.exports = {
 
       message.channel.send(newEmbed).then((r) => r.delete({ timeout: 10000 }));
     } else {
-      let newEmbed = new MessageEmbed()
-        .setColor("#e4e265")
-        .setTitle("")
-        .setURL("")
-        .setDescription(
+      return message.channel.send(
           "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
         )
-        .setImage("")
-        .setFooter("");
-
-      message.channel.send(newEmbed).then((r) => r.delete({ timeout: 10000 }));
     }
   },
 };
