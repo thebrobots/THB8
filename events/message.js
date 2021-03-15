@@ -84,7 +84,7 @@ module.exports = async (message, cooldowns) => {
 
   let p = custom;
 
-  if (message.content.startsWith(`<@${message.client.user.id}>` || `<@!${message.client.user.id}>`)) {
+  if (message.content.startsWith(`<@${message.client.user.id}>`)) {
     return message.channel.send(
       `My prefix in this server is \`${p}\`\n\nTo get a list of commands, type \`${p}help\``
     );

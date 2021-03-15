@@ -261,7 +261,7 @@ module.exports = {
             }
             break;
 
-          case "sh_ybf8":
+          case "sh_yhf8":
             reaction.users.remove(member).catch(console.error);
             let otherMessage = new MessageEmbed()
               .setColor("#ffe65d")
