@@ -34,6 +34,7 @@ module.exports = async (message, cooldowns) => {
   let userr = message.author.id
   if(!message.guild.me.hasPermission("SEND_MESSAGES")) {
     client.users.get(userr).send('Oops! Looks like I can\'t talk in your server. Please make sure I have SEND_MESSAGES permission and try again')
+  }
   if(msgDoc) {
   const msgss = msgDoc.messages
   if (msgss === 100) {
