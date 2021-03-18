@@ -31,8 +31,9 @@ module.exports = async (message, cooldowns) => {
       .catch((e) => console.log(`Failed to save a member's messages: ${e}`));
   }
   
+  let userr = message.author
   if(!message.guild.me.hasPermission("SEND_MESSAGES")) {
-    return message.author.send('Oops! Looks like I can\'t talk in your server. Please make sure I have SEND_MESSAGES permission and try again')
+    return userr.user.send('Oops! Looks like I can\'t talk in your server. Please make sure I have SEND_MESSAGES permission and try again')
   if(msgDoc) {
   const msgss = msgDoc.messages
   if (msgss === 100) {
