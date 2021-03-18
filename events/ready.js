@@ -50,6 +50,6 @@ fetch('https://top.gg/api//bots/800074066949832714/stats', {
         body: JSON.stringify({ "server_count": client.guilds.cache.size }),
     })
     .then(res => res.json())
-    .then(json => console.log(json)).then(console.log('posted')
+    .then(json => console.log(json)).then(console.log('posted'))
     
 };
