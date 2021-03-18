@@ -1,6 +1,7 @@
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 const { MONGO_URL } = require("../util/sharkyUtil");
+ const fetch = require("node-fetch");
 
 module.exports = (client) => {
   let allMembers = new Set();
@@ -41,4 +42,14 @@ module.exports = (client) => {
     .catch((err) =>
       console.log(chalk.bgRed.black(` Unable to connect to Mongo DB! `))
     );
+  
+ 
+fetch('https://top.gg/api//bots/800074066949832714/stats', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json", "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE" }, 
+        body: JSON.stringify({ "server_count": client.guilds.cache.size }),
+    })
+    .then(res => res.json())
+    .then(json => console.log(json));
+
 };
