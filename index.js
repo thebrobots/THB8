@@ -8,12 +8,11 @@ require("./util/eventLoader")(client);
 require("./util/nqn")(client);
 require("./util/muteHelper")(client);
 
-const servers = client.guilds.cache.size
  
 fetch('https://top.gg/api//bots/800074066949832714/stats', {
         method: 'POST',
         headers: { "Content-Type": "application/json", "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE" }, 
-        body: JSON.stringify({ "server_count": servers }),
+        body: JSON.stringify({ "server_count": client.guilds.cache.size }),
     })
     .then(res => res.json())
     .then(json => console.log(json));
