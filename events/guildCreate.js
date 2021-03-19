@@ -3,15 +3,10 @@ const { PREFIX } = require("../util/sharkyUtil");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = (guild) => {
- let found = 0;
-    guild.channels.cache.map((c) => {
-        if (found === 0) {
-          if (c.type === "text") {
-            if (c.permissionsFor(guild.me).has("VIEW_CHANNEL") === true) {
-              if (c.permissionsFor(guild.me).has("SEND_MESSAGES") === true) {
-                if (c.permissionsFor(guild.me).has("EMBED_LINKS") === true) {
-                  if (c.permissionsFor(guild.me).has("USE_EXTERNAL_EMOJIS") === true) {
-                let newEmbed = new MessageEmbed()
+  var channel = guild.channels.cache
+    .filter((chx) => chx.type === "text")
+    .find((x) => x.position === 0);
+  let newEmbed = new MessageEmbed()
     .setColor("#ffe65d")
     .setTitle(
       "Thanks for inviting me into this server <a:sh_like:812742588439593000>"
@@ -22,15 +17,14 @@ module.exports = (guild) => {
     )
     .setImage("")
     .setFooter("");
-  c.send(newEmbed);
-                
-                found = 1;
-              }
-            }
-          }
-        }
-      }
-    }
-      });
-  
+  channel.send(newEmbed);
+
+  const { Table } = require("console-table-printer");
+  const p = new Table();
+  p.addRow(
+    { server: guild, action: "join", blacklisted: "false" },
+    { color: "green" }
+  );
+
+  p.printTable();
 };
