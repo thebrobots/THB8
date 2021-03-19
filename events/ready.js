@@ -4,6 +4,7 @@ const { MONGO_URL } = require("../util/sharkyUtil");
  const fetch = require("node-fetch");
 
 module.exports = (client) => {
+ setInterval(() => {
   let allMembers = new Set();
   client.guilds.cache.forEach((guild) => {
     guild.members.cache.forEach((member) => {
@@ -22,7 +23,7 @@ module.exports = (client) => {
     client.user.setActivity(statuses[index], { type: "WATCHING" });
     index = nums[index + 1] ? index + 1 : 0;
   }, 30000);
-
+}, 300000)
   client.on("warn", (info) => console.log(info));
   client.on("error", console.error);
 
