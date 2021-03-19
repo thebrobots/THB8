@@ -1,3 +1,4 @@
+const Discord = require('discord.js')
 
 module.exports = {
     name: 'bug-report',
@@ -5,19 +6,27 @@ module.exports = {
     cooldown: 15, 
     async execute(client, message, args) {
       try {
-        let Message = `**Server Name: ** ${message.guild.name}\n**Author Name:** ${message.author.tag}\n**Bug:** ${args.join(" ")}`;
-        client.channels.cache.get('814969700861739059').send({
-          embed: {
-            title: "Bug report",
-            description: Message,
-            color: "#ffe65d",
-            footer: {
-              text: "Reported by " + message.author.tag,
-              icon_url: message.author.displayAvatarURL()
-            },
-            timestamp: new Date()
-          }
-        });
+
+        const sgs = args.join(" ");
+       
+        const channel = client.channels.cache.get('814969700861739059')
+
+        const webhooks = await channel.fetchWebhooks();
+		    const webhook = webhooks.first();
+
+        const embed = new Discord.MessageEmbed()
+        .setTitle('Bug report')
+        .setColor('#FFE65D')
+        .setDescription(sgs)
+        .setFooter(`server: ${message.guild.name}`)
+        .setTimestamp(new Date())
+
+
+		    await webhook.send({
+			  username: message.author.username,
+			  avatarURL: message.author.displayAvatarURL({ dynamic: true }),
+			  embeds: [embed],
+		});
   
         return message.channel.send('The report has been sent! thanks ;)');
       } catch (err) {
