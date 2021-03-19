@@ -7,5 +7,4 @@ module.exports = (client) => {
   client.on("message", reqEvent("afk"));
   client.on("guildCreate", reqEvent("guildCreate"));
   client.on("guildDelete", reqEvent("guildDelete"));
-  client.on("voiceStateUpdate", reqEvent("voiceStateUpdate"));
 };
