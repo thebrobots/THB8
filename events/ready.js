@@ -15,8 +15,8 @@ module.exports = (client) => {
   let statuses = [
     `@THB8 | ${client.guilds.cache.size} servers 🎉`,
     `@THB8 | v1.7`,
-    
   ];
+  
   let index = 0;
   let nums = [0, 1];
   setInterval(() => {
@@ -24,9 +24,6 @@ module.exports = (client) => {
     index = nums[index + 1] ? index + 1 : 0;
   }, 30000);
 }, 300000)
- 
-  client.on("warn", (info) => console.log(info));
-  client.on("error", console.error);
 
   console.log(
     chalk.bgYellowBright.black(
