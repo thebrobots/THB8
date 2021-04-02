@@ -13,8 +13,8 @@ module.exports = (client) => {
   });
 
   let statuses = [
-    `@YHF8 | ${client.guilds.cache.size} servers 🎉`,
-    `@YHF8 | ${allMembers.size} members 🥂`,
+    `@THB8 | ${client.guilds.cache.size} servers 🎉`,
+    `@THB8 | v1.7`,
     
   ];
   let index = 0;
@@ -24,8 +24,7 @@ module.exports = (client) => {
     index = nums[index + 1] ? index + 1 : 0;
   }, 30000);
 }, 300000)
-  client.on("warn", (info) => console.log(info));
-  client.on("error", console.error);
+  
 
   console.log(
     chalk.bgYellowBright.black(
