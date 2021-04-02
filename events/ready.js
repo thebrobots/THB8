@@ -13,8 +13,8 @@ module.exports = (client) => {
   });
 
   let statuses = [
-    `@YHF8 | ${client.guilds.cache.size} servers 🎉`,
-    `@YHF8 | ${allMembers.size} members 🥂`,
+    `@THB8 | ${client.guilds.cache.size} servers 🎉`,
+    `@THB8 | v1.7`,
     
   ];
   let index = 0;
