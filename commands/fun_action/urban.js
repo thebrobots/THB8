@@ -2,12 +2,17 @@ const fetch = require("node-fetch");
 const querystring = require("querystring");
 const { MessageEmbed } = require("discord.js");
 
+const { nonsfw } = require("../../util messages/nsfw");
+
 module.exports = {
   name: "urban",
   aliases: ["urb"],
   description: "Search an urban word term",
   usage: "<word/s>",
   async execute(client, message, args) {
+if (!message.channel.nsfw) {
+      return nonsfw(message);
+    }
     const trim = (str, max) =>
       str.length > max ? `${str.slice(0, max - 3)}...` : str;
 
