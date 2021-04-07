@@ -76,7 +76,7 @@ module.exports = (client) => {
     headers: {
       "Content-Type": "application/json",
       Authorization:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOnRydWUsImlkIjoiNTIxMzExMDUwMTkzNDM2NjgyIiwiaWF0IjoxNjE3ODE1OTg3fQ.1L2-SgoLKq7XyBbciURwSB1NHo4urYidMVT9BHGbRb",
     },
     body: JSON.stringify({ guildCount: client.guilds.cache.size }),
   })
