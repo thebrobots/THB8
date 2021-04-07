@@ -43,12 +43,46 @@ module.exports = (client) => {
     );
   
  setInterval(() => {
-fetch('https://top.gg/api//bots/800074066949832714/stats', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json", "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE" }, 
-        body: JSON.stringify({ "server_count": client.guilds.cache.size }),
-    })
-    .then(res => res.json())
-    .then(json => console.log(json)).then(console.log('posted'))
- }, 900000)
+  fetch("https://top.gg/api//bots/800074066949832714/stats", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE",
+    },
+    body: JSON.stringify({ server_count: client.guilds.cache.size }),
+  })
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+    .then(console.log("posted stats to topgg"));
+
+  fetch("https://space-bot-list.xyz/api/bots/800074066949832714", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: "jFyVGgKNb8ImYbmma9.-y70lak6g.o4Mut8LhuV265v8o6F5rd",
+    },
+    body: JSON.stringify({
+      guilds: client.guilds.cache.size,
+      users: allMembers.size,
+    }),
+  })
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+    .then(console.log("posted stats to space bots"));
+
+  fetch("https://discord.bots.gg/api/v1/bots/800074066949832714/stats", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE",
+    },
+    body: JSON.stringify({ guildCount: client.guilds.cache.size }),
+  })
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+    .then(console.log("posted stats to discord bots"));
+}, 900000);
+
 };
