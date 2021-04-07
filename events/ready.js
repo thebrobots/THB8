@@ -5,13 +5,6 @@ const { MONGO_URL } = require("../util/sharkyUtil");
 
 module.exports = (client) => {
  setInterval(() => {
-  let allMembers = new Set();
-  client.guilds.cache.forEach((guild) => {
-    guild.members.cache.forEach((member) => {
-      allMembers.add(member.user.id);
-    });
-  });
-
   let statuses = [
     `@THB8 | ${client.guilds.cache.size} servers 🎉`,
     `@THB8 | v1.7`,
@@ -43,6 +36,13 @@ module.exports = (client) => {
     );
   
  setInterval(() => {
+  let allMembers = new Set();
+  client.guilds.cache.forEach((guild) => {
+    guild.members.cache.forEach((member) => {
+      allMembers.add(member.user.id);
+    });
+  });
+  
   fetch("https://top.gg/api//bots/800074066949832714/stats", {
     method: "POST",
     headers: {
