@@ -59,8 +59,8 @@ module.exports = (client) => {
   fetch("https://space-bot-list.xyz/api/bots/800074066949832714", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: "atJCiI68Z0VeuUAsk3rudckWcBVlNWNpbwsoaBv3FvSWgg-NzC",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       guilds: client.guilds.cache.size,
