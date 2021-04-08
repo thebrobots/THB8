@@ -60,7 +60,7 @@ module.exports = (client) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authentication: "atJCiI68Z0VeuUAsk3rudckWcBVlNWNpbwsoaBv3FvSWgg-NzC",
+      Authorization: "atJCiI68Z0VeuUAsk3rudckWcBVlNWNpbwsoaBv3FvSWgg-NzC",
     },
     body: JSON.stringify({
       guilds: client.guilds.cache.size,
