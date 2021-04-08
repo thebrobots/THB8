@@ -74,9 +74,9 @@ module.exports = (client) => {
   fetch("https://discord.bots.gg/api/v1/bots/800074066949832714/stats", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOnRydWUsImlkIjoiNTIxMzExMDUwMTkzNDM2NjgyIiwiaWF0IjoxNjE3ODE1OTg3fQ.1L2-SgoLKq7XyBbciURwSB1NHo4urYidMVT9BHGbRb",
+        "Content-Type": "application/json",
     },
     body: JSON.stringify({ guildCount: client.guilds.cache.size }),
   })
