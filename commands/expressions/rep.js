@@ -6,8 +6,7 @@ module.exports = {
   description: "Send someone a reputation point!",
   cooldown: 86400,
   async execute(client, message, args) {
-    const user = message.mentions.users.first();
-
+    const user = message.mentions.members.first();
 
     if (!user) {
       message.channel.send("<:sh_reps:816052337189322754> Please mention someone!");

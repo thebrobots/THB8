@@ -7,8 +7,7 @@ module.exports = {
   description: "Cuddle someone!",
   async execute(client, message, args) {
 
-    const user = message.mentions.users.first();
-
+    const user = message.mentions.members.first();
 
     if (!user) {
       return message.channel.send("Please mention someone!");

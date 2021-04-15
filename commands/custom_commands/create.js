@@ -5,22 +5,16 @@ module.exports = {
   aliases: ["ccc"],
   async execute(client, message, args) {
     if (!message.member.hasPermission("MANAGE_SERVER"))
-      return message.reply(
+      return message.channel.send(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
 
-    const name = args[0].toLowerCase();
+    const name = args[0];
     const response = args.slice(1).join(" ");
-    const regex = /^([A-Z0-9])*$/gi
-    
-    if (!name) return message.reply("Please specify a command name");
-    if (!response) return message.reply("Please specify a response");
-    
-    if(name.length > 30) return message.reply('Woah! Thats too long. Try again with something shorter')
-    if(response.length > 2000) return message.reply('Woah! Thats too long. Try again with something shorter')
-    
-    if(regex.test(name) === false) return message.reply('Please type normal letters, I\'m not a robot :/')
-    
+
+    if (!name) return message.channel.send("Please specify a command name");
+    if (!response) return message.channel.send("Please specify a response");
+
     const data = await cmdModel.findOne({
       Guild: message.guild.id,
       Command: name,

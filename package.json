@@ -4,19 +4,16 @@
   "description": "a discord bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "elttayman",
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.4.0",
-    "@haileybot/captcha-generator": "^1.6.3",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "array-move": "^3.0.1",
     "booru": "^2.4.0",
     "canvacord": "^5.1.0",
-    "captcha-canvas": "^2.2.2",
     "chalk": "^4.1.0",
     "claire-cord": "0.0.7",
     "common-tags": "^1.8.0",
@@ -36,7 +33,6 @@
     "figlet": "^1.5.0",
     "got": "^11.8.1",
     "i": "^0.3.6",
-    "jimp": "^0.16.1",
     "lyrics-finder": "^21.7.0",
     "moment": "^2.29.1",
     "mongoose": "^5.11.15",

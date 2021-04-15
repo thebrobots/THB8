@@ -12,8 +12,7 @@ module.exports = {
     if (!message.channel.nsfw) {
       return nonsfw(message);
     }
-    const user = message.mentions.users.first();
-
+    const user = message.mentions.members.first();
 
     if (!user) {
       return message.channel.send("Please mention someone!");

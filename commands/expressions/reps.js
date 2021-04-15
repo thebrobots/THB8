@@ -6,9 +6,8 @@ module.exports = {
   description: "See someone`s reputation points!",
   async execute(client, message, args) {
     let user;
-    if (message.mentions.users.first()) {
-      user = message.mentions.users.first();
-
+    if (message.mentions.members.first()) {
+      user = message.mentions.members.first();
     } else {
       user = message.author;
     }

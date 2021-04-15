@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["h"],
   description: "Display all commands and descriptions",
   async execute(client, message, args) {
-    if (!message.guild.me.hasPermission("ADD_REACTIONS" || "EMBED_LINKS")) {
+    if (!message.guild.me.hasPermission("ADD_REACTIONS")) {
       return message.channel.send(
         "Please make sure I have permission to `ADD_REACTIONS` and `EMBED_LINKS`"
       );
@@ -24,11 +24,9 @@ module.exports = {
       pr = PREFIX;
     }
 
-    await message.delete();
-    
     if (!args[0]) {
       let embed = new MessageEmbed()
-        .setTitle("THB8 commands")
+        .setTitle("YHF8 commands")
         .setColor("#ffe65d")
         .setDescription("React with the emoji of your choice")
         .addFields(
@@ -181,7 +179,7 @@ module.exports = {
               .setColor("#ffe65d")
               .setTitle("<:sh_utils:813491190069461082> Useful commands")
               .setDescription(
-                "Useful commands are used to get info about someone, translating something..."
+                "Useful commands are used to get info abou someone, translating something..."
               )
               .addField("available commands", help.helpMsg5)
               .addField(
