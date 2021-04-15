@@ -7,7 +7,7 @@ module.exports = (client) => {
  setInterval(() => {
   let statuses = [
     `@THB8 | ${client.guilds.cache.size} servers 🎉`,
-    `@THB8 | v1.7`,
+    `@THB8 | v1.8`,
   ];
   
   let index = 0;
