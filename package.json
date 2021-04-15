@@ -4,7 +4,8 @@
   "description": "A discord bot",
   "main": "index.js",
   "engines": {
-    "node": "14.16.1"
+    "node": "14.16.1",
+    "git": "2.31.windows.1"
   },
   "dependencies": {
     "@discordjs/opus": "^0.4.0",
