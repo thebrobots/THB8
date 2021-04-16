@@ -1,12 +1,14 @@
 {
   "name": "thebrobots",
-  "version": "1.7.4",
-  "description": "A discord bot",
+  "version": "1.0.0",
+  "description": "a discord bot",
   "main": "index.js",
-  "engines": {
-    "node": "14.16.1",
-    "git": "2.31.windows.1"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
+  "author": "elttayman",
+  "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.4.0",
     "@haileybot/captcha-generator": "^1.6.3",
@@ -57,23 +59,5 @@
     "youtube-sr": "^3.0.4",
     "ytdl-core": "^4.5.0",
     "zoro-api": "^0.3.5"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/elttayman/TBB8-DEV.git"
-  },
-  "keywords": [
-    "discord"
-  ],
-  "author": "elttayman",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/elttayman/TBB8-DEV/issues"
-  },
-  "homepage": "https://github.com/elttayman/TBB8-DEV#readme"
+  }
 }
