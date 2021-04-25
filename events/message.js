@@ -116,7 +116,7 @@ module.exports = async (message, cooldowns) => {
     const cbModel = require("../models/levelup");
 
     const blDoc = await cbModel.findOne({
-      Guild: member.guild.id,
+      Guild: message.guild.id,
     });
     if(blDoc) {
     const ch = blDoc.Channel;
