@@ -8,6 +8,9 @@
 },
 "author": "elttayman",
 "license": "ISC",
+"engines": {
+"node": "14.16.1",
+},
 "dependencies": {
 "@discordjs/opus": "^0.4.0",
 "@haileybot/captcha-generator": "^1.6.3",
