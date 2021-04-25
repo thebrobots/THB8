@@ -7,6 +7,10 @@ module.exports = async (message, cooldowns) => {
 
   let client = message.client;
 
+  if (message.author.bot) return;
+  if (!message.guild) return;
+
+  
   // messages counter
   const msgModel = require("../models/messages");
 
@@ -90,8 +94,6 @@ module.exports = async (message, cooldowns) => {
     );
   }
 
-  if (message.author.bot) return;
-  if (!message.guild) return;
 
   if (!message.content.startsWith(p)) return;
 
@@ -110,51 +112,24 @@ module.exports = async (message, cooldowns) => {
     randomXp
   );
   if (hasLeveledUp) {
+
+    const cbModel = require("../models/levelup");
+
+    const blDoc = await cbModel.findOne({
+      Guild: member.guild.id,
+    });
+    if(blDoc) {
+    const ch = blDoc.Channel;
+    const channel = message.guild.channels.cache.get(ch);
     const user = await Levels.fetch(message.author.id, message.guild.id);
     const { body } = await request.get(
-      `https://ybf8-mcgen.herokuapp.com/a.php?i=40&h=Level+up%21&t=You+are+now+level+${user.level}%21`
+      `https://ybf8-mcgen.herokuapp.com/a.php?i=40&h=Level+up%21&t=${message.author.username}+is+now+level+${user.level}%21`
     );
 
     const attach = new Discord.MessageAttachment(body, "levelUp.png");
-    message.reply(attach);
+    channel.send(attach);
+    }
   }
-
-  // economy system
-  const moneyModel = require("../models/money");
-
-  client.bal = async (guild, id) =>
-    new Promise(async (ful) => {
-      const data = await moneyModel.findOne({ guild, id });
-      if (!data) return ful(0);
-      ful(data.money);
-    });
-
-  client.add = async (guild, id, money) => {
-    await moneyModel.findOne({ guild, id }),
-      async (err, data) => {
-        if (err) throw err;
-        if (data) {
-          data.money += money;
-          await data.save();
-        } else {
-          data = new moneyModel({ guild, id, money });
-          await data.save();
-        }
-      };
-  };
-
-  client.rmv = async (guild, id, money) => {
-    await moneyModel.findOne({ guild, id }),
-      async (err, data) => {
-        if (err) throw err;
-        if (data) {
-          data.money -= money;
-        } else {
-          return message.channel.send("That member doesn't have any money :/");
-        }
-        await data.save();
-      };
-  };
 
   // custom commands
   const cmdModel = require("../models/ccommands");

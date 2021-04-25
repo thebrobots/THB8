@@ -69,12 +69,5 @@ module.exports = async (guild) => {
     }
   });
 
-  const { Table } = require("console-table-printer");
-  const p = new Table();
-  p.addRow(
-    { server: guild, action: "leave", blacklisted: 'false', data: "Deleted" },
-    { color: "red" }
-  );
-
-  p.printTable();
+  console.log(`server: ${guild} | action: leave | blacklisted: false | data: deleted`)
 };
