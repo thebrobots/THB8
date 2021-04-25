@@ -9,7 +9,7 @@
 "author": "elttayman",
 "license": "ISC",
 "engines": {
-"node": "14.16.1",
+"node": "14.16.1"
 },
 "dependencies": {
 "@discordjs/opus": "^0.4.0",
