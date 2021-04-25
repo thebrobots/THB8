@@ -18,7 +18,7 @@
     "`avatar` `server` `channel` `icon` `whois` `wiki` `translate` `snipe`"
   ],
   "helpMsg6": ["`rank` `leaderboard` `setlevel` `rep` `reps` `messages`"],
-  "helpMsg7": ["`prefix` `Custom commands!! cc-create, cc-list, cc-delete`"],
+  "helpMsg7": ["`prefix` `cc-create, cc-list, cc-delete` `setchannel` `disablechannel`"],
   "helpMsg8": [
     "`help` `uptime` `invite` `ping` `update` `bug-report` `bot-suggest`"
   ],
