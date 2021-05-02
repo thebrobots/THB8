@@ -9,10 +9,10 @@ module.exports = async (message, cooldowns) => {
 
   if (message.author.bot) return;
   if (!message.guild) return;
-
+  if (!message.guild.me.permissionsIn(message.channel).has('SEND_MESSAGES')) return;
   
-  // messages counter
-  const msgModel = require("../models/messages");
+    // messages counter
+    const msgModel = require("../models/messages");
 
   const msgDoc = await msgModel.findOne({
     guildID: message.guild.id,
