@@ -9,4 +9,5 @@ module.exports = (client) => {
   client.on("guildDelete", reqEvent("guildDelete"));
   client.on("warn", (info) => console.log(info));
   client.on("error", console.error);
+  client.on("unhandledRejection", console.error);
 };
