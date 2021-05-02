@@ -3,6 +3,9 @@ const discord = require("discord.js");
 module.exports = (client) => {
   client.on("message", async (message) => {
     if (message.author.bot) return;
+    if (!message.guild) return;
+    if (!message.guild.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")) return;
+
     let substringArray = get_substrings_between(message.content, ":", ":");
     let msg = message.content;
     if (!substringArray.length) return;
@@ -21,7 +24,14 @@ module.exports = (client) => {
     });
 
     if (msg === message.content) return;
-
+    
+    if (!message.guild.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")) {
+      return message.reply('Ups! I need `MANAGE_MESSAGES` permission in order to use the emojis :/')
+    }
+    else if(!message.guild.me.permissionsIn(message.channel).has("MANAGE_WEBHOOKS")) {
+      return message.channel.send("Ups! I need `MANAGE_WEBHOOKS` permission in order to use the emojis :/");
+    }
+    
     let webhook = await message.channel.fetchWebhooks();
     webhook = webhook.find((x) => x.name === "NQN2");
 
