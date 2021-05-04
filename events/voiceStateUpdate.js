@@ -22,11 +22,11 @@ module.exports = async (oldState, newState, inVoice) => {
             const cbModel = require("../models/levelup");
         
             const blDoc = await cbModel.findOne({
-              Guild: member.guild.id,
+              Guild: newState.guild.id,
             });
             if(blDoc) {
             const ch = blDoc.Channel;
-            const channel = message.guild.channels.cache.get(ch);
+            const channel = newState.guild.channels.cache.get(ch);
             const user = await Levels.fetch(newState.member.id, newState.guild.id);
             const { body } = await request.get(
               `https://ybf8-mcgen.herokuapp.com/a.php?i=40&h=Level+up%21&t=${newState.member.username}+is+now+level+${user.level}%21`
