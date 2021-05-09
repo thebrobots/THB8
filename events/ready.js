@@ -78,5 +78,17 @@ module.exports = (client) => {
     .then((res) => res.json())
     .then((json) => console.log(json))
     .then(console.log("posted stats to discord bots"));
+  fetch("api.infinitybotlist.com/bot/800074066949832714", {
+    method: "POST",
+    headers: {
+      Authorization:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE",
+     "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ servers: client.guilds.cache.size }),
+  })
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+    .then(console.log("posted stats to infinity bot list"));
 }, 900000);
 };
