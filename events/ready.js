@@ -81,9 +81,9 @@ module.exports = (client) => {
   fetch("api.infinitybotlist.com/bot/800074066949832714", {
     method: "POST",
     headers: {
+     "Content-Type": "application/json",
       Authorization:
         "uFH3YWFu8RekGoH8evrE5KG4evFlNb3ScNVAYs6OFjsvfVT2SLBjUI8p2j6IEPoguvb5uUURqcJCnO7qE8aglpjeVjcFCDcizL7j",
-     "Content-Type": "application/json",
     },
     body: JSON.stringify({ servers: client.guilds.cache.size }),
   })
