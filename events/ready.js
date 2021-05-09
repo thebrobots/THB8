@@ -82,7 +82,7 @@ module.exports = (client) => {
     method: "POST",
     headers: {
       Authorization:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgwMDA3NDA2Njk0OTgzMjcxNCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE2MDk2NjgyfQ.xPq_ioJ14Xj2rvOfl-9qYxoDnUznBQ_ZYQMojFqw4PE",
+        "uFH3YWFu8RekGoH8evrE5KG4evFlNb3ScNVAYs6OFjsvfVT2SLBjUI8p2j6IEPoguvb5uUURqcJCnO7qE8aglpjeVjcFCDcizL7j",
      "Content-Type": "application/json",
     },
     body: JSON.stringify({ servers: client.guilds.cache.size }),
