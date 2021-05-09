@@ -78,7 +78,7 @@ module.exports = (client) => {
     .then((res) => res.json())
     .then((json) => console.log(json))
     .then(console.log("posted stats to discord bots"));
-  fetch("api.infinitybotlist.com/bot/800074066949832714", {
+  fetch("https://api.infinitybotlist.com/bot/800074066949832714", {
     method: "POST",
     headers: {
      "Content-Type": "application/json",
