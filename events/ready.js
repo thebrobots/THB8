@@ -82,10 +82,10 @@ module.exports = (client) => {
     method: "POST",
     headers: {
      "Content-Type": "application/json",
-      Authorization:
+      authorization:
         "uFH3YWFu8RekGoH8evrE5KG4evFlNb3ScNVAYs6OFjsvfVT2SLBjUI8p2j6IEPoguvb5uUURqcJCnO7qE8aglpjeVjcFCDcizL7j",
     },
-    body: JSON.stringify({ servers: client.guilds.cache.size }),
+    body: JSON.stringify({ servers: client.guilds.cache.size, shards: 1 }),
   })
     .then((res) => res.json())
     .then((json) => console.log(json))
