@@ -2,7 +2,7 @@ module.exports = async (guild) => {
   const setup = require("../models/setup")
   
   await setup.findOneAndDelete({ Guild: guild.id})
-  const cmdModel = require("../models/ccommands");
+  const cmdModel = require("../models/cmd");
 
   await cmdModel.find({ Guild: guild.id }, async (err, data) => {
     if (err) throw err;
