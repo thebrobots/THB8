@@ -31,6 +31,8 @@ module.exports = {
       return message.channel.send("Enter a valid amount of time");
     } else if (target.id === message.author.id) {
       return message.channel.send("I can't let you self-harm");
+    } else if (target.id === message.guild.owner.id) {
+      return message.channel.send("You can't mute the owner of the server >:(");
     } else if (message.mentions.members.first().id === `521311050193436682`) {
       return message.channel.send(
         "Don't touch my dad <a:sh_daddy:799392400735862825>"

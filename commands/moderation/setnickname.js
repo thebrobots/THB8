@@ -40,6 +40,9 @@ module.exports = {
     } else {
       const user = message.mentions.users.first();
 
+      if (user.id === message.guild.owner.id) {
+      return message.channel.send("You can't change the owner of the server's nickname >:(")
+    }
       const targetPosition = user.roles.highest.position;
       const memberPosition = message.member.roles.highest.position;
       const clientPosition = message.guild.me.roles.highest.position;
