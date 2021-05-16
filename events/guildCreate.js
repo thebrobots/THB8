@@ -6,7 +6,7 @@ module.exports = async (guild) => {
 
   const sb = new setup({
     Guild: guild.id,
-    Prefix: 't/',
+    Prefix: 'y!',
     Pruning: false,
   })
 
