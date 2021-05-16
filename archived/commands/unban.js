@@ -6,11 +6,11 @@ module.exports = {
   description: "Unban a member from the server",
   usage: "<member> <reason>",
   async execute(client, message, args) {
-    const userID = userReg.test(args[0]) ? userReg.exec(args[0])[1] : args[0];
-    const target = await message.client.members
-      .fetch(userID)
-      .catch(() => null);
-
+    let userID = args[0]
+    let target;
+      message.guild.fetchBans().then(bans=> {
+      target = bans.find(b => b.user.id === userID)
+      })
     if (!message.member.permissions.has("BAN_MEMBERS")) {
       return message.channel.send(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
