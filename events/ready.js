@@ -1,12 +1,12 @@
 const chalk = require("chalk");
 const mongoose = require("mongoose");
-const { MONGO_URL } = require("../util/sharkyUtil");
+const { MONGO_URL } = require("../secured");
  const fetch = require("node-fetch");
 module.exports = (client) => {
  setInterval(() => {
   let statuses = [
     `@THB8 | ${client.guilds.cache.size} servers 🎉`,
-    `@THB8 | v2.0`,
+    `@THB8 | v2.1`,
   ];
 
   let index = 0;
