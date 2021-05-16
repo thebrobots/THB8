@@ -17,7 +17,7 @@ module.exports = async (message, cooldowns) => {
   if (!sb) {
     const newServer = new setup({
       Guild: message.guild.id,
-      Prefix: 't/',
+      Prefix: 'y!',
       Pruning: false,
     })
 
