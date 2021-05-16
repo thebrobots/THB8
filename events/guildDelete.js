@@ -1,14 +1,7 @@
 module.exports = async (guild) => {
-  const prefixModel = require("../models/prefix");
-
-  await prefixModel.findOne({ Guild: guild.id }, async (err, data) => {
-    if (err) throw err;
-    if (data) {
-      await prefixModel
-        .findOneAndDelete({ Guild: guild.id })
-    }
-  });
-
+  const setup = require("../models/setup")
+  
+  await setup.findOneAndDelete({ Guild: guild.id})
   const cmdModel = require("../models/ccommands");
 
   await cmdModel.find({ Guild: guild.id }, async (err, data) => {
@@ -45,16 +38,6 @@ module.exports = async (guild) => {
     if (err) throw err;
     if (data) {
       await warnModel
-        .deleteMany({ guildID: guild.id })
-    }
-  });
-
-  const repModel = require("../models/rep");
-
-  await repModel.find({ guildID: guild.id }, async (err, data) => {
-    if (err) throw err;
-    if (data) {
-      await repModel
         .deleteMany({ guildID: guild.id })
     }
   });

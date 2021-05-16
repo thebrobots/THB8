@@ -1,4 +1,4 @@
-const cmdModel = require("../../models/ccommands");
+const cmdModel = require("../../models/cmd");
 
 module.exports = {
   name: "cc-delete",

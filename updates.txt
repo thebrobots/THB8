@@ -1,1 +1,0 @@
-captcha, blacklist words, guildmemberadd, eventLoader, package/lock, websites.json, guildMemberRemove, voicestateUpdate, help.js, ccc, chatbot, 

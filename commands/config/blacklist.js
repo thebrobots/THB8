@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const blModel = require("../../models/blacklist");
+const blModel = require("../../models/guard");
 module.exports = {
   name: "blacklist",
   aliases: ["blackl"],

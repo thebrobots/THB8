@@ -1,7 +1,6 @@
-const Util = require("../../util/MitUtil.js");
+const Util = require("../../utilities/plugins");
 const superagent = require("superagent");
-const { nonsfw } = require("../../util messages/nsfw");
-
+const { nonsfw } = require("../../messages/nsfw");
 
 module.exports = {
   name: "random",
@@ -12,7 +11,7 @@ module.exports = {
       if (!message.channel.nsfw) {
         return nonsfw(message);
       } else {
-        Util.subredditimage(['hentai', 'nsfw'], message);
+        Util.subredditimage(["hentai", "nsfw"], message);
       }
     } catch (err) {
       console.log(err);

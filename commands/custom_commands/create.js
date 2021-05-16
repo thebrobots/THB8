@@ -1,4 +1,4 @@
-const cmdModel = require("../../models/ccommands");
+const cmdModel = require("../../models/cmd");
 
 module.exports = {
   name: "cc-create",
@@ -11,16 +11,23 @@ module.exports = {
 
     const name = args[0].toLowerCase();
     const response = args.slice(1).join(" ");
-    const regex = /^([A-Z0-9])*$/gi
-    
+    const regex = /^([A-Z0-9])*$/gi;
+
     if (!name) return message.reply("Please specify a command name");
     if (!response) return message.reply("Please specify a response");
-    
-    if(name.length > 30) return message.reply('Woah! Thats too long. Try again with something shorter')
-    if(response.length > 2000) return message.reply('Woah! Thats too long. Try again with something shorter')
-    
-    if(regex.test(name) === false) return message.reply('Please type normal letters, I\'m not a robot :/')
-    
+
+    if (name.length > 30)
+      return message.reply(
+        "Woah! Thats too long. Try again with something shorter"
+      );
+    if (response.length > 2000)
+      return message.reply(
+        "Woah! Thats too long. Try again with something shorter"
+      );
+
+    if (regex.test(name) === false)
+      return message.reply("Please type normal letters, I'm not a robot :/");
+
     const data = await cmdModel.findOne({
       Guild: message.guild.id,
       Command: name,

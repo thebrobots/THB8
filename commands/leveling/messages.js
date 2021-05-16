@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const msgModel = require("../../models/messages");
+const user = require("../../models/user");
 
 module.exports = {
   name: "messages",
@@ -17,6 +18,10 @@ module.exports = {
       guildID: message.guild.id,
       memberID: target.id,
     });
+    
+    const ub = await user.findOne({
+       User: target.id,
+     });
 
     let msgs;
     if (!msgDoc) {
@@ -25,27 +30,32 @@ module.exports = {
       msgs = msgDoc.messages;
     }
 
+    let msg;
+    if (!ub) {
+      msg = 0;
+    } else {
+      msg = ub.Messages;
+    }
+
     let msgBadges;
 
-    if (msgs < 100) {
+    if (msg < 100) {
       msgBadges =
-        `\`${100 - msgs}\`` + " messages to get `bronze messager` badge!";
-    } else if (msgs > 100 && msgs < 500) {
+        `\`${100 - msg}\`` + " messages to get `bronze messager` badge!";
+    } else if (msg > 100 && msg < 500) {
       msgBadges =
-        `\`${500 - msgs}\`` + " messages to get `silver messager` badge!";
-    } else if (msgs > 100 && msgs > 500 && msgs < 1000) {
+        `\`${500 - msg}\`` + " messages to get `silver messager` badge!";
+    } else if (msg > 100 && msg > 500 && msg < 1000) {
       msgBadges =
-        `\`${1000 - msgs}\`` + " messages to get `golden messager` badge!";
-    } else if (msgs > 100 && msgs > 500 && msgs > 1000 && msgs < 5000) {
+        `\`${1000 - msg}\`` + " messages to get `golden messager` badge!";
+    } else if (msg > 100 && msg > 500 && msg > 1000 && msg < 5000) {
       msgBadges =
-        `\`${5000 - msgs}\`` + " messages to get `diamond messager` badge!";
+        `\`${5000 - msg}\`` + " messages to get `diamond messager` badge!";
     }
     let messagesEmbed = new Discord.MessageEmbed()
       .setColor("#ffe65d")
       .setTitle("<:sh_chat:816782070063431740> Messages")
-      .setDescription(
-        `${target} has \`${msgs}\` messages!\r\n\r\n${msgBadges}`
-      );
+      .setDescription(`${target} has \`${msg}\` messages!\r\n\r\n${msgBadges}`);
     message.channel.send(messagesEmbed);
   },
 };

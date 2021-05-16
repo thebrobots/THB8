@@ -1,6 +1,6 @@
 const Levels = require("discord-xp");
 const { MessageEmbed } = require("discord.js");
-const { MONGO_URL } = require("../../util/sharkyUtil");
+const { MONGO_URL } = require("../../secured");
 
 module.exports = {
   name: "leaderboard",

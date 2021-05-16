@@ -1,8 +1,17 @@
-const config = require("../config.json");
-const { PREFIX } = require("../util/sharkyUtil");
+const setup = require('../models/setup') 
+const { PREFIX } = require("../secured");
 const { MessageEmbed } = require("discord.js");
 
-module.exports = (guild) => {
+module.exports = async (guild) => {
+
+  const sb = new setup({
+    Guild: guild.id,
+    Prefix: 't/',
+    Pruning: false,
+  })
+
+  await sb.save().catch((err) => console.log(err));
+
   var channel = guild.channels.cache
     .filter((chx) => chx.type === "text")
     .find((x) => x.position === 0);
@@ -19,12 +28,7 @@ module.exports = (guild) => {
     .setFooter("");
   channel.send(newEmbed);
 
-  const { Table } = require("console-table-printer");
-  const p = new Table();
-  p.addRow(
-    { server: guild, action: "join", blacklisted: "false" },
-    { color: "green" }
-  );
-
-  p.printTable();
+ console.log(
+   `server: ${guild} | action: join | blacklisted: false | data: created`
+ );
 };

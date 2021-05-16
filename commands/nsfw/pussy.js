@@ -1,5 +1,5 @@
-const Util = require("../../util/MitUtil.js");
-const { nonsfw } = require("../../util messages/nsfw");
+const Util = require("../../utilities/plugins");
+const { nonsfw } = require("../../messages/nsfw");
 
 let subreddit = ["pelfie", "pussy", "rearpussy", "vagina", "vulva"];
 

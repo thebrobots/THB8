@@ -1,7 +1,18 @@
 module.exports = async (member) => {
-  const Levels = require("discord-xp");
+  const levels = require("../node_modules/discord-xp/models/levels");
 
-  await Levels.deleteUser({ userId: member.id, guildId: member.guild.id });
+  await levels.findOne(
+    { userID: member.id, guildID: member.guild.id },
+    async (err, data) => {
+      if (err) throw err;
+      if (data) {
+        await levels.findOneAndDelete({
+          userID: member.id,
+          guildID: member.guild.id,
+        });
+      }
+    }
+  );
 
   const muteModel = require("../models/mute");
 
@@ -11,22 +22,6 @@ module.exports = async (member) => {
       if (err) throw err;
       if (data) {
         await muteModel.findOneAndDelete({
-          guildID: member.guild.id,
-          memberID: member.id,
-        });
-      }
-    }
-    
-  );
-
-  const repModel = require("../models/rep");
-
-  await repModel.findOne(
-    { guildID: member.guild.id, memberID: member.id },
-    async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        await repModel.findOneAndDelete({
           guildID: member.guild.id,
           memberID: member.id,
         });

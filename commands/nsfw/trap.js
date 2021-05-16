@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { nonsfw } = require("../../util messages/nsfw");
+const { nonsfw } = require("../../messages/nsfw");
 
 const client = require('nekos.life');
 const neko = new client();

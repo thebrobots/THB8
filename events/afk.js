@@ -8,6 +8,7 @@ module.exports = async (message) => {
   const mentioned = message.mentions.members.first();
 
   if (mentioned) {
+    
     const data = afk.get(mentioned.id);
 
     if (data) {
@@ -24,6 +25,8 @@ module.exports = async (message) => {
   if(other){
       afk.delete(message.author.id)
 
-      message.reply('Welcome back ^^ Your AFK has been removed')
+      message.reply(
+        "<:sh_zzz:822550709064564761> Welcome back! Your AFK has been removed"
+      );
   }
 };

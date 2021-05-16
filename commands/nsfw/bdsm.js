@@ -1,6 +1,6 @@
-const Util = require("../../util/MitUtil.js");
+const Util = require("../../utilities/plugins");
 const request = require("request");
-const { nonsfw } = require("../../util messages/nsfw");
+const { nonsfw } = require("../../messages/nsfw");
 let subreddit = ["bdsm", "BDSMGW"];
 
 module.exports = {

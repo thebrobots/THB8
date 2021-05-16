@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { nonsfw } = require("../../util messages/nsfw");
+const { nonsfw } = require("../../messages/nsfw");
 const booru = require("booru");
 
 module.exports = {

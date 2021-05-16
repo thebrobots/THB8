@@ -1,62 +1,34 @@
 module.exports = async (member) => {
-  const { CaptchaGenerator } = require("captcha-canvas");
-  const fs = require("fs");
-  const Discord = require("discord.js");
+  const user = require("../models/user");
+  const muteModel = require("../models/mute");
 
-  const cpModel = require("../models/captcha");
-
-
-  const blDoc = await cpModel.findOne({
-    Guild: member.guild.id,
+  const ub = await user.findOne({
+    User: member.id,
   });
 
-  if (blDoc) {
-    const ch = blDoc.Channel;
-    const channel = member.guild.channels.cache.get(ch);
-
-    const rl = blDoc.Role
-    const role = member.guild.roles.cache.get(rl);
-
-    const options = {
-      size: 40,
-      characters: 5,
-      color: "#ffe65d",
-    };
-    const option = {
-      color: "#f8dc50",
-    };
-
-    const captcha = new CaptchaGenerator();
-    captcha.setDimension(50, 150);
-    captcha.setCaptcha(options);
-    captcha.setTrace(option);
-
-    const buffer = await captcha.generate();
-    let attach = new Discord.MessageAttachment(buffer, "captcha.png");
-
-    const embed = new Discord.MessageEmbed()
-      .setColor("#ffe65d")
-      .setTitle(`Welcome to ${member.guild}`)
-      .attachFiles(attach)
-      .setDescription("Please type what you see on the captcha below")
-      .addField(
-        "Why this?",
-        "This feature is made to protect the server against possible raiders ot\rautomated accounts"
-      )
-      .addField("Your captcha:", `\u200b`)
-      .setImage("attachment://captcha.png");
-    channel.send(embed);
-
-    let collector = channel.createMessageCollector(
-      (m) => m.author.id === member.id
-    );
-    collector.on("collect", (m) => {
-      if (m.content.toUpperCase() === captcha.text)
-        channel
-          .send("Verified Successfully!")
-          .then(member.roles.add(role));
-      else channel.send(`Not correct!`);
-      collector.stop();
+  if (!ub) {
+    const newUser = new user({
+      User: member.id,
+      Reps: 0,
+      Messages: 0,
     });
+
+    await newUser.save().catch((e) => console.log(`Failed to save new user.`));
+  }
+
+  const muteDoc = await muteModel.findOne({
+    guildID: member.guild.id,
+    memberID: member.id,
+  });
+
+  if (muteDoc) {
+    const muteRole = member.guild.roles.cache.find((r) => r.name == "Muted");
+
+    if (muteRole)
+      member.roles.add(muteRole.id).catch((err) => console.log(err));
+
+    muteDoc.memberRoles = [];
+
+    await muteDoc.save().catch((err) => console.log(err));
   }
 };

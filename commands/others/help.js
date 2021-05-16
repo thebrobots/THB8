@@ -1,7 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const help = require("../../messages/helpMsgs.json");
-const { PREFIX } = require("../../util/sharkyUtil");
-const prefixModel = require("../../models/prefix");
+const help = require("../../json files/helpMsgs.json");
+const setup = require("../../models/setup");
 
 module.exports = {
   name: "help",
@@ -13,7 +12,7 @@ module.exports = {
         "Please make sure I have permission to `ADD_REACTIONS` and `EMBED_LINKS`"
       );
     }
-    const data = await prefixModel
+    const data = await setup
       .findOne({ Guild: message.guild.id })
       .catch((err) => console.log(err));
 
@@ -21,7 +20,7 @@ module.exports = {
     if (data) {
       pr = data.Prefix;
     } else {
-      pr = PREFIX;
+      pr = 'y!';
     }
 
     await message.delete();
@@ -291,7 +290,6 @@ module.exports = {
       });
     } else {
       const { commands } = message.client;
-      const data = [];
 
       const name = args[0].toLowerCase();
       const command =
@@ -302,18 +300,24 @@ module.exports = {
         return message.reply("that's not a valid command!");
       }
 
-      data.push(`**Name:** ${command.name}`);
+      const embed = new MessageEmbed()
+        .setTitle(command.name)
+        .setColor("#FFE65D")
+        .setDescription(command.description);
 
-      if (command.aliases)
-        data.push(`**Aliases:** ${command.aliases.join(", ")}`);
-      if (command.description)
-        data.push(`**Description:** ${command.description}`);
-      if (command.usage)
-        data.push(`**Usage:** ${PREFIX}${command.name} ${command.usage}`);
-
-      data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
-
-      message.channel.send(data, { split: true });
+      if(command.aliases) {
+        embed.addField('Aliases', command.aliases)
+      }
+      if(command.cooldown) {
+        embed.addField("Cooldown", `${command.cooldown} seconds`);
+      }
+      else {
+        embed.addField("Cooldown", `3 seconds`);
+      }
+      
+      embed.addField('Example', 'soon...')
+      
+      message.channel.send(embed)
     }
   },
 };

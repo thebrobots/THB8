@@ -1,6 +1,5 @@
-const Util = require("../../util/MitUtil.js");
 const superagent = require("superagent");
-const { nonsfw } = require("../../util messages/nsfw");
+const { nonsfw } = require("../../messages/nsfw");
 module.exports = {
   name: "anal",
   description: "Sends a random anal images",

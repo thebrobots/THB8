@@ -2,9 +2,12 @@ module.exports = async (oldState, newState, inVoice) => {
   let oldUserChannel = oldState.channelID;
   let newUserChannel = newState.channelID;
 
+  if(newState.member.bot) return;
+
+
   const Discord = require('discord.js')
   const request = require("node-superfetch");
-  const { MONGO_URL } = require("../util/sharkyUtil");
+  const { MONGO_URL } = require("../secured");
   
   const Levels = require("discord-xp");
   Levels.setURL(MONGO_URL);
@@ -19,20 +22,24 @@ module.exports = async (oldState, newState, inVoice) => {
         )
 
         if (hasLeveledUp) {
-            const cbModel = require("../models/levelup");
+            const setup = require("../models/setup");
         
-            const blDoc = await cbModel.findOne({
+            const sb = await setup.findOne({
               Guild: newState.guild.id,
             });
-            if(blDoc) {
-            const ch = blDoc.Channel;
+
+            if(sb) {
+            const ch = sb.Lvlchannel;
             const channel = newState.guild.channels.cache.get(ch);
+
+            if(!channel) return;
+
             const user = await Levels.fetch(newState.member.id, newState.guild.id);
             const { body } = await request.get(
-              `https://ybf8-mcgen.herokuapp.com/a.php?i=40&h=Level+up%21&t=${newState.member.username}+is+now+level+${user.level}%21`
+              `https://ybf8-mcgen.herokuapp.com/a.php?i=40&h=Level+up%21&t=${newState.member.username}+is+now+level+${user.level}%21+`
             );
         
-            const attach = new Discord.MessageAttachment(body, "levelUp.png");
+            const attach = new Discord.MessageAttachment(body, "levelup.png");
             channel.send(attach);
         }
       }

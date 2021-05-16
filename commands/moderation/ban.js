@@ -1,16 +1,16 @@
 const { MessageEmbed } = require("discord.js");
-const userReg = RegExp(/<@!?(\d+)>/);
 
 module.exports = {
   name: "ban",
-  aliases: ["b"],
   description: "Ban a member from the server",
   usage: "<member> <reason>",
   async execute(client, message, args) {
-    const userID = userReg.test(args[0]) ? userReg.exec(args[0])[1] : args[0];
-    const target =
-      (await message.client.members.fetch(userID).catch(() => null)) ||
-      message.guild.members.cache.get(args[0]);
+    let target;
+    if (message.mentions.members.first()) {
+      target = client.users.cache.get(message.mentions.members.first().id);
+    } else {
+      target = client.users.cache.get(args[0]);
+    }
 
     if (!message.member.permissions.has("BAN_MEMBERS")) {
       return message.channel.send(
@@ -22,13 +22,13 @@ module.exports = {
       return message.channel.send("Please mention someone!");
     } else if (target.id === message.author.id) {
       return message.channel.send("I can't let you self-harm");
-    } else if (message.mentions.members.first().id === `521311050193436682`) {
+    } else if (target.id === `521311050193436682`) {
       return message.channel.send(
         "Don't touch my dad <a:sh_daddy:799392400735862825>"
       );
     } else if (target.id === `${message.client.user.id}`) {
       return message.channel.send(
-        "Rlly trying to make me ban myself!? hipocrite "
+        "Rlly trying to make me ban myself!? hipocrite"
       );
     }
 
@@ -67,6 +67,6 @@ module.exports = {
           reason ? `Reason: ${reason}` : ""
         }`
       );
-    message.channel.send(newEmbed);
+    message.reply(newEmbed);
   },
 };

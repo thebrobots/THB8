@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const request = require("node-superfetch");
-const { shorten } = require("../../util/utils");
+const { shorten } = require("../../utilities/msgformat");
 
 module.exports = {
   name: "wiki",

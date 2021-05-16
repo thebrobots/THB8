@@ -1,0 +1,6 @@
+# WebStorm IDE Projet Settings
+.idea/
+
+# Dependency directories
+node_modules/
+

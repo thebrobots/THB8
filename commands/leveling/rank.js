@@ -1,8 +1,8 @@
 const Levels = require("discord-xp");
 const Canvas = require("discord-canvas"),
-  Discord = require("discord.js");
-const msgModel = require("../../models/messages");
-const { MONGO_URL } = require("../../util/sharkyUtil");
+Discord = require("discord.js");
+const theuser = require("../../models/user");
+const { MONGO_URL } = require("../../secured");
 
 module.exports = {
   name: "rank",
@@ -17,29 +17,33 @@ module.exports = {
       target = message.author;
     }
 
-    const repModel = require("../../models/rep");
-
-    const repDoc = await repModel.findOne({
-      guildID: message.guild.id,
-      memberID: target.id,
+    const ub = await theuser.findOne({
+      User: target.id,
     });
 
     let points;
-    if (!repDoc) {
+    if (!ub) {
       points = 0;
     } else {
-      points = repDoc.reps;
+      points = ub.Reps;
     }
 
-    const msgDoc = await msgModel.findOne({
-      guildID: message.guild.id,
-      memberID: target.id,
-    });
+     let repBadges;
+
+     if (points > 5 && points < 10) {
+       repBadges = "bronze";
+     } else if (points > 10 && points < 30) {
+       repBadges = "silver";
+     } else if (points > 30 && points < 50) {
+       repBadges = "gold";
+     } else if (points > "50") {
+       repBadges = "diamond";
+     }
 
     let messages;
 
-    if (msgDoc) {
-      messages = msgDoc.messages;
+    if (ub) {
+      messages = ub.Messages;
     } else {
       messages = 0;
     }
@@ -70,23 +74,19 @@ module.exports = {
         .setXP("current", user.xp)
         .setXP("needed", neededXP)
         .setBadge(1, msgBadges)
+        .setBadge(6, repBadges)
         .setRank(user.position)
         .setAvatar(target.displayAvatarURL({ dynamic: false, format: "png" }))
         .setLevel(user.level)
         .setReputation(points)
         .setRankName("Your text here!")
         .setUsername(`${target.username}#${target.discriminator}`)
-        /*
-.setBadge(3, "diamond")
-.setBadge(5, "silver")
-.setBadge(6, "bronze")
-*/
         .setBackground("https://i.imgur.com/YRlFuaY.png")
         .toAttachment();
 
       let attachment = new Discord.MessageAttachment(
         image.toBuffer(),
-        "rank-card.png"
+        "rank.png"
       );
 
       message.channel.send(attachment);
@@ -99,26 +99,19 @@ module.exports = {
         .setXP("current", 0)
         .setXP("needed", 100)
         .setBadge(1, msgBadges)
+        .setBadge(6, repBadges)
         .setRank("0")
         .setAvatar(target.displayAvatarURL({ dynamic: false, format: "png" }))
         .setLevel(0)
         .setReputation(points)
         .setRankName("Your text here!")
         .setUsername(`${target.username}#${target.discriminator}`)
-        /*
-  .setCurrentXP(user.xp)
-          .setRequiredXP(neededXP)
-  .setBadge(1, "gold")
-  .setBadge(3, "diamond")
-  .setBadge(5, "silver")
-  .setBadge(6, "bronze")
-  */
         .setBackground("https://i.imgur.com/YRlFuaY.png")
         .toAttachment();
 
       let attachment = new Discord.MessageAttachment(
         image.toBuffer(),
-        "rank-card.png"
+        "rank.png"
       );
 
       message.channel.send(attachment);
