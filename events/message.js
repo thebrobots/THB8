@@ -36,7 +36,9 @@ module.exports = async (message, cooldowns) => {
 
   let client = message.client;
 
+  
   // messages counter per user
+  if(ub) {
   const msg = ub.Messages;
 
   if (!msg) {
@@ -49,7 +51,8 @@ module.exports = async (message, cooldowns) => {
       .save()
       .catch((e) => console.log(`Failed to save a member's messages: ${e}`));
   }
-
+  }
+  
   // messages counter per guild
   const msgDoc = await msgModel.findOne({
     guildID: message.guild.id,
