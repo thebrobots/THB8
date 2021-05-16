@@ -1,19 +1,19 @@
-if (query === "captcha") {
+if (query === "chatbot") {
   if (sb) {
-    const cps = sb.Cpchannel;
-    if (cps) {
+    const chb = sb.Cbchannel;
+    if (chb) {
       await setup.updateOne(
         {
           Guild: message.guild.id,
         },
-        { $unset: { Cpchannel: "" } }
+        { $unset: { Cbchannel: "" } }
       );
 
       message.reply(
-        `<a:sh_clap:839512083761987604> Captcha verification has been disabled in this server`
+        `<a:sh_clap:839512083761987604> Chatbot has been disabled in this server`
       );
     } else {
-      message.reply(`Captcha verification is not enabled in this server`);
+      message.reply(`Chatbot is not enabled in this server`);
     }
   }
 }
