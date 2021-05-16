@@ -79,6 +79,8 @@ module.exports = async (message, cooldowns) => {
     return;
 
   // message reached achievement
+   if(ub) {
+  const msg = ub.Messages;
   if (msg) {
 
     if (msg === 100) {
@@ -117,7 +119,7 @@ module.exports = async (message, cooldowns) => {
       message.reply(attach);
     }
   }
-
+   }
   // prefix definition
   let custom;
 
