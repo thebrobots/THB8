@@ -286,7 +286,9 @@ module.exports = {
       });
 
       collector.on("end", () => {
+        if(helpMessage) {
         helpMessage.delete().catch(console.error);
+        }
       });
     } else {
       const { commands } = message.client;
