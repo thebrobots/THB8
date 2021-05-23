@@ -20,7 +20,11 @@ module.exports = {
     } else {
       argsLevel = args[0];
     }
-
+    
+  if(!argsLevel) {
+  return message.channel.send("Please provide the level you want to set")
+  }
+    
     const user = await Levels.fetch(member.id, message.guild.id);
 
     if (user.level > argsLevel) {
