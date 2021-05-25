@@ -11,7 +11,12 @@ module.exports = {
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
     }
-
+    
+    if (!message.guild.me.permissions.has("MANAGE_CHANNELS"))
+      return message.reply(
+        "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
+      );
+    
     let channel = message.mentions.channels.first(),
       time = args.slice(1).join(" ");
 
