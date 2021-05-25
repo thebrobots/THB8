@@ -8,7 +8,7 @@ module.exports = {
   subcommands: "channel, command, logs",
 
   async execute(client, message, args) {
-    if (!message.member.permissions.has("MANAGE_SERVER"))
+    if (!message.member.permissions.has("MANAGE_GUILD"))
       return message.channel.send(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
