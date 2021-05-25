@@ -4,7 +4,7 @@ module.exports = {
   name: "cc-create",
   aliases: ["ccc"],
   async execute(client, message, args) {
-    if (!message.member.hasPermission("MANAGE_SERVER"))
+    if (!message.member.permissions.has("MANAGE_SERVER"))
       return message.reply(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
