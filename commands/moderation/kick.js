@@ -14,7 +14,7 @@ module.exports = {
       return message.channel.send(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
-    } else if (!message.guild.me.hasPermission("KICK_MEMBERS")) {
+    } else if (!message.guild.me.permissions.has("KICK_MEMBERS")) {
       return message.channel.send("I don't have permissions to kick members");
     } else if (!target) {
       return message.channel.send("Please mention someone!");
