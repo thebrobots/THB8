@@ -234,7 +234,7 @@ module.exports = async (message, cooldowns) => {
       return message.channel
         .send(`Please wait ${tleft} before using \`${command.name}\` again.`)
         .then((msg) => {
-          msg.delete({ timeout: 5000 });
+          setTimeout(() => {msg.delete()}, 5000)
         });
     }
   }
