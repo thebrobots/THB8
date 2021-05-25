@@ -10,7 +10,7 @@ module.exports = {
       )
       .setImage("https://i.imgur.com/oe4iK5i.gif");
     return message.channel.send(newEmbed).then(msg => {
-      msg.delete({timeout: 5000})
+      setTimeout(() => {msg.delete()}, 5000)
     })
   },
 };
