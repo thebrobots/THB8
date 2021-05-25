@@ -5,7 +5,7 @@ module.exports = {
   aliases: ["setprefix"],
   Description: "Change the server's prefix",
   async execute(client, message, args) {
-    if (!message.member.hasPermission("MANAGE_SERVER"))
+    if (!message.member.permissions.has("MANAGE_SERVER"))
       return message.channel.send(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
