@@ -7,7 +7,7 @@ module.exports = {
   async execute(client, message, args) {
     Levels.setURL(MONGO_URL);
     
-    if (!message.member.permissions.has("MANAGE_SERVER"))
+    if (!message.member.permissions.has("MANAGE_GUILD"))
       return message.reply(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
