@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["h"],
   description: "Display all commands and descriptions",
   async execute(client, message, args) {
-    if (!message.guild.me.hasPermission("ADD_REACTIONS" || "EMBED_LINKS")) {
+    if (!message.guild.me.permissions.has("ADD_REACTIONS" || "EMBED_LINKS")) {
       return message.channel.send(
         "Please make sure I have permission to `ADD_REACTIONS` and `EMBED_LINKS`"
       );
