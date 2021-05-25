@@ -4,7 +4,6 @@ module.exports = (client) => {
   client.on("message", async (message) => {
     if (message.author.bot) return;
     if (!message.guild) return;
-    if (!message.guild.me.permissionsIn(message.channel).has("MANAGE_MESSAGES")) return;
 
     let substringArray = get_substrings_between(message.content, ":", ":");
     let msg = message.content;
