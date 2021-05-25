@@ -20,7 +20,7 @@ module.exports = {
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
     } else if (
-      !message.guild.me.hasPermission(["MANAGE_ROLES", "MANAGE_CHANNELS"])
+      !message.guild.me.permissions.has(["MANAGE_ROLES", "MANAGE_CHANNELS"])
     ) {
       return message.channel.send(
         "I need MANAGE_ROLES and MANAGE_CHANNELS permissions"
