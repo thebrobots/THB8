@@ -5,7 +5,7 @@ module.exports = {
   aliases: ["blackl"],
   description: "Blacklist words on the server",
   async execute(client, message, args) {
-    if (!message.member.hasPermission("MANAGE_GUILD"))
+    if (!message.member.permissions.has("MANAGE_GUILD"))
       return message.channel.send(
         "Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>"
       );
