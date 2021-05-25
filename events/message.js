@@ -249,7 +249,7 @@ module.exports = async (message, cooldowns) => {
     message.channel
       .send("There was an error executing that command.")
       .then((msg) => {
-        msg.delete({ timeout: 5000 });
+        setTimeout(() => {msg.delete()}, 5000)
       })
       .catch(console.error);
   }
