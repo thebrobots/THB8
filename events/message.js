@@ -10,7 +10,14 @@ module.exports = async (message, cooldowns) => {
 
     if (message.author.bot) return;
     if (!message.guild) return;
-    
+     
+  //nmentioned bot
+  if (message.content.startsWith(`<@${message.client.user.id}>`)) {
+    return message.channel.send(
+      `My prefix in this server is \`${p}\`\n\nTo get a list of commands, type \`${p}help\``
+    );
+  }
+  
   const sb = await setup.findOne({ Guild: message.guild.id });
   const ub = await theuser.findOne({ User: message.author.id });
 
