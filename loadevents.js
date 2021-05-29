@@ -6,7 +6,6 @@ module.exports = (client) => {
   client.on("ready", () => reqEvent("ready")(client));
   client.on("message", (m) => reqEvent("message")(m, cooldowns));
   client.on("message", reqEvent("afk"));
-  client.on("message", reqEvent("botmention"));
   client.on("guildCreate", reqEvent("guildCreate"));
   client.on("guildDelete", reqEvent("guildDelete"));
   client.on("guildMemberAdd", reqEvent("guildMemberAdd"));
