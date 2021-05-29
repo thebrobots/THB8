@@ -39,6 +39,6 @@ module.exports = {
       .send(
         `<a:sh_wash:840936684954845205> Correctly clean **${args[0]}** messages!`
       )
-      .then((r) => r.delete({ timeout: 5000 }));
+      .then((msg) => setTimeout(() => {msg.delete()}, 5000));
   },
 };
