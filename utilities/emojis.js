@@ -32,11 +32,11 @@ module.exports = (client) => {
     }
     
     let webhook = await message.channel.fetchWebhooks();
-    webhook = webhook.find((x) => x.name === "suggestions");
+    webhook = webhook.find((x) => x.name === "emojis");
 
     if (!webhook) {
-      webhook = await message.channel.createWebhook(`suggestions`, {
-        avatar: client.user.displayAvatarURL({ dynamic: true }),
+      webhook = await message.channel.createWebhook(`emojis`, {
+        avatar: client.user.displayAvatarURL({ format: "png" }),
       });
     }
 
@@ -44,7 +44,7 @@ module.exports = (client) => {
       name: message.member.nickname
         ? message.member.nickname
         : message.author.username,
-      avatar: message.author.displayAvatarURL({ dynamic: true }),
+      avatar: message.author.displayAvatarURL({ format: "png" }),
     });
 
     message.delete().catch((m) => {});
@@ -52,8 +52,8 @@ module.exports = (client) => {
     webhook.send(msg).catch((m) => {});
 
     await webhook.edit({
-      name: `NQN2`,
-      avatar: client.user.displayAvatarURL({ dynamic: true }),
+      name: `emojis`,
+      avatar: client.user.displayAvatarURL({ format: "png" }),
     });
   });
 
