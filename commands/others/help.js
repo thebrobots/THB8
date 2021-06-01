@@ -99,8 +99,8 @@ module.exports = {
       });
 
       collector.on("collect", async (reaction, user) => {
-        const member = message.guild.member(user);
-
+        const member = message.guild.members.cache.get(user.id);
+        
         switch (reaction.emoji.name) {
           case "sh_mods":
             reaction.users.remove(member).catch(console.error);
