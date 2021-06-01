@@ -44,10 +44,8 @@ module.exports = {
     if (!muteRole) {
       muteRole = await message.guild.roles
         .create({
-          data: {
             name: "Muted",
-            color: "RED",
-          },
+            color: "RED"
         })
         .catch((err) => console.log(err));
     }
