@@ -10,13 +10,6 @@ module.exports = async (message, cooldowns) => {
 
     if (message.author.bot) return;
     if (!message.guild) return;
-     
-  //nmentioned bot
-  if (message.content.startsWith(`<@${message.client.user.id}>`)) {
-    return message.channel.send(
-      `My prefix in this server is \`${p}\`\n\nTo get a list of commands, type \`${p}help\``
-    );
-  }
   
   const sb = await setup.findOne({ Guild: message.guild.id });
   const ub = await theuser.findOne({ User: message.author.id });
@@ -43,6 +36,24 @@ module.exports = async (message, cooldowns) => {
 
   let client = message.client;
 
+  // prefix definition
+  let custom;
+
+  if (sb) {
+    custom = sb.Prefix;
+  } else {
+    custom = PREFIX;
+  }
+
+  let p = custom;
+  
+  //nmentioned bot
+  if (message.content.startsWith(`<@${message.client.user.id}>`)) {
+    return message.channel.send(
+      `My prefix in this server is \`${p}\`\n\nTo get a list of commands, type \`${p}help\``
+    );
+  }
+  
   
   // messages counter per user
   if(ub) {
@@ -127,17 +138,7 @@ module.exports = async (message, cooldowns) => {
     }
   }
    }
-  // prefix definition
-  let custom;
-
-  if (sb) {
-    custom = sb.Prefix;
-  } else {
-    custom = PREFIX;
-  }
-
-  let p = custom;
-
+  
   if (!message.content.startsWith(p)) return;
 
   const args = message.content.substring(p.length).trim().split(" ");
