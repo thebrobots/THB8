@@ -8,8 +8,9 @@ module.exports = {
     usage: '<member> <reason>',
     async execute(client, message, args) {
         
-        const target = message.mentions.members.first()
-            || message.guild.members.cache.get(args[0]);
+        const target =
+          message.mentions.users.first() ||
+          message.guild.members.cache.get(args[0]);
 
             if (!message.member.permissions.has("MANAGE_ROLES")) {
                 return message.channel.send("Eeeh wait! You can't use that command <a:sh_perms:799392392654225408>");

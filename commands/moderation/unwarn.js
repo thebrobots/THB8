@@ -8,7 +8,7 @@ module.exports = {
   usage: "<member> <warn id> <reason>",
   async execute(client, message, args) {
     const target =
-      message.mentions.members.first() ||
+      message.mentions.users.first() ||
       message.guild.members.cache.get(args[0]);
 
     if (!message.member.permissions.has("MANAGE_ROLES")) {
