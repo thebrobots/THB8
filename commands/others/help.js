@@ -20,11 +20,11 @@ module.exports = {
     if (data) {
       pr = data.Prefix;
     } else {
-      pr = 'y!';
+      pr = "y!";
     }
 
     await message.delete();
-    
+
     if (!args[0]) {
       let embed = new MessageEmbed()
         .setTitle("THB8 commands")
@@ -82,15 +82,15 @@ module.exports = {
 
       var helpMessage = await message.channel.send(embed);
 
-      await helpMessage.react("<:sh_mods:813491189780971542>");
-      await helpMessage.react("<:sh_np:812824625720590367>");
-      await helpMessage.react("<:sh_utils:813491190069461082>");
-      await helpMessage.react("<:sh_images:813491189772058627>");
-      await helpMessage.react("<:sh_fun:813491190145482773>");
-      await helpMessage.react("<:sh_star:814934724060774490>");
-      await helpMessage.react("<:sh_config:813491189705736333>");
-      await helpMessage.react("<:sh_18:818196966067667014>");
-      await helpMessage.react("<:sh_yhf8:820734376714174494>");
+      helpMessage.react("<:sh_mods:813491189780971542>");
+      helpMessage.react("<:sh_np:812824625720590367>");
+      helpMessage.react("<:sh_utils:813491190069461082>");
+      helpMessage.react("<:sh_images:813491189772058627>");
+      helpMessage.react("<:sh_fun:813491190145482773>");
+      helpMessage.react("<:sh_star:814934724060774490>");
+      helpMessage.react("<:sh_config:813491189705736333>");
+      helpMessage.react("<:sh_18:818196966067667014>");
+      helpMessage.react("<:sh_yhf8:820734376714174494>");
 
       const filter = (reaction, user) =>
         user.id !== message.client.user.id && user.id == message.author.id;
@@ -100,7 +100,7 @@ module.exports = {
 
       collector.on("collect", async (reaction, user) => {
         const member = message.guild.members.cache.get(user.id);
-        
+
         switch (reaction.emoji.name) {
           case "sh_mods":
             reaction.users.remove(member).catch(console.error);
@@ -286,8 +286,8 @@ module.exports = {
       });
 
       collector.on("end", () => {
-        if(helpMessage) {
-        helpMessage.delete().catch(console.error);
+        if (helpMessage) {
+          helpMessage.delete().catch(console.error);
         }
       });
     } else {
@@ -307,19 +307,18 @@ module.exports = {
         .setColor("#FFE65D")
         .setDescription(command.description);
 
-      if(command.aliases) {
-        embed.addField('Aliases', command.aliases)
+      if (command.aliases) {
+        embed.addField("Aliases", command.aliases);
       }
-      if(command.cooldown) {
+      if (command.cooldown) {
         embed.addField("Cooldown", `${command.cooldown} seconds`);
-      }
-      else {
+      } else {
         embed.addField("Cooldown", `3 seconds`);
       }
-      
-      embed.addField('Example', 'soon...')
-      
-      message.channel.send(embed)
+
+      embed.addField("Example", "soon...");
+
+      message.channel.send(embed);
     }
   },
 };
