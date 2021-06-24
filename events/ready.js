@@ -7,10 +7,12 @@ module.exports = (client) => {
   let statuses = [
     `@THB8 | ${client.guilds.cache.size} servers 🎉`,
     `@THB8 | v2.1`,
+    `@THB8 | update soon...`,
+    `@THB8 | TMB8 coming soon`,
   ];
 
   let index = 0;
-  let nums = [0, 1];
+  let nums = [0, 1, 2, 3];
   setInterval(() => {
     client.user.setActivity(statuses[index], { type: "WATCHING" });
     index = nums[index + 1] ? index + 1 : 0;
