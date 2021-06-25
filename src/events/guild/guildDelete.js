@@ -12,7 +12,7 @@ module.exports = async (guild) => {
     }
   });
 
-  const levels = require("../node_modules/discord-xp/models/levels");
+  const levels = require("../../../node_modules/discord-xp/models/levels");
 
   await levels.find({ guildID: guild.id }, async (err, data) => {
     if (err) throw err;

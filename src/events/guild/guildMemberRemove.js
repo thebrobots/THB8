@@ -1,5 +1,5 @@
 module.exports = async (member) => {
-  const levels = require("../node_modules/discord-xp/models/levels");
+  const levels = require("../../../node_modules/discord-xp/models/levels");
   await levels.findOne(
     { userID: member.id, guildID: member.guild.id },
     async (err, data) => {
