@@ -1,1 +1,1 @@
-worker: node happy.js
+worker: node src/happy.js
