@@ -9,7 +9,7 @@
 ...
 
 ### have another idea?
-- Post it in an issue
+- Post it in an issue and develop it
 
 ## Before contributing
 - Head to [CONTRIBUTING.md](CONTRIBUTING.md)
