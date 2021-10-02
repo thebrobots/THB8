@@ -12,4 +12,4 @@
 - Post it in an issue
 
 ## Before contributing
-- Head to CONTRIBUTING.md
+- Head to [CONTRIBUTING.md](CONTRIBUTING.md)
